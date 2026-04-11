@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Icars | Premium Automotive</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --dark: #0a0a0a;
+      --dark-2: #111111;
+      --dark-3: #1a1a1a;
+      --dark-4: #222222;
+      --text-muted: #888;
+      --text-light: #ccc;
+      --white: #f5f5f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      color: var(--white);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      background: rgba(10,10,10,0.92) !important;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--gold) !important;
+      text-transform: uppercase;
+    }
+    .nav-link {
+      font-family: 'Jost', sans-serif;
+      font-weight: 400;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-light) !important;
+      padding: 0.5rem 1rem !important;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 1rem; right: 1rem;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .nav-link:hover { color: var(--gold) !important; }
+    .nav-link:hover::after { transform: scaleX(1); }
+    .dropdown-menu {
+      background: var(--dark-3);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 0;
+      min-width: 160px;
+    }
+    .dropdown-item {
+      color: var(--text-light);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      transition: all 0.2s;
+    }
+    .dropdown-item:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
+    .dropdown-divider { border-color: rgba(201,168,76,0.15); }
+    .form-control {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 0;
+      color: var(--white);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+    }
+    .form-control:focus {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--gold);
+      box-shadow: none;
+      color: var(--white);
+    }
+    .form-control::placeholder { color: var(--text-muted); }
+    .btn-outline-success {
+      border: 1px solid var(--gold);
+      border-radius: 0;
+      color: var(--gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.375rem 1rem;
+      transition: all 0.3s;
+    }
+    .btn-outline-success:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── CAROUSEL ── */
+    .carousel { position: relative; }
+    .carousel-item img {
+      height: 90vh;
+      object-fit: cover;
+      filter: brightness(0.45);
+    }
+    .carousel-caption {
+      bottom: 15%;
+      left: 8%;
+      right: auto;
+      text-align: left;
+      max-width: 600px;
+    }
+    .carousel-caption h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    .carousel-caption p {
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      line-height: 1.9;
+      color: rgba(245,245,240,0.75);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+    .carousel-caption .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 0;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem 2.5rem;
+      transition: all 0.3s;
+    }
+    .carousel-caption .btn-secondary:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .carousel-indicators [data-bs-target] {
+      width: 30px;
+      height: 1px;
+      border: none;
+      background: rgba(201,168,76,0.4);
+      opacity: 1;
+      transition: all 0.3s;
+    }
+    .carousel-indicators .active {
+      background: var(--gold);
+      width: 60px;
+    }
+    .carousel-control-prev, .carousel-control-next {
+      width: 60px;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+    .carousel-control-prev:hover, .carousel-control-next:hover { opacity: 1; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── BRAND CARDS ── */
+    .marketing { padding: 6rem 2rem; background: var(--dark-2); }
+    .brand-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .brand-card {
+      background: var(--dark-3);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      border-bottom: 2px solid transparent;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+    .brand-card:hover { background: var(--dark-4); transform: translateY(-4px); }
+    .brand-card:hover::before { transform: scaleX(1); }
+    .brand-img-wrap {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 2rem;
+      border: 1px solid rgba(201,168,76,0.25);
+      box-shadow: 0 0 30px rgba(201,168,76,0.08);
+      transition: border-color 0.4s, box-shadow 0.4s;
+    }
+    .brand-card:hover .brand-img-wrap {
+      border-color: rgba(201,168,76,0.6);
+      box-shadow: 0 0 40px rgba(201,168,76,0.15);
+    }
+    .brand-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .brand-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .brand-card p {
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .brand-card .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold);
+      border-radius: 0;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.5rem;
+      transition: all 0.3s;
+    }
+    .brand-card .btn-secondary:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--dark);
+    }
+
+    /* ── FEATURETTE DIVIDER ── */
+    .featurette-divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      margin: 0;
+    }
+
+    /* ── FEATURETTE ── */
+    .featurette-section { background: var(--dark); padding: 5rem 0; }
+    .featurette-section:nth-child(even) { background: var(--dark-2); }
+    .featurette-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .featurette-heading .text-body-secondary {
+      color: var(--gold) !important;
+      font-style: italic;
+    }
+    .lead {
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      line-height: 2;
+      color: var(--text-muted);
+      font-style: italic;
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+    }
+    .featurette-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+    .featurette-img-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      filter: brightness(0.8) contrast(1.05);
+      transition: transform 0.6s ease;
+      display: block;
+    }
+    .featurette-img-wrap:hover img { transform: scale(1.04); }
+    .featurette-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,168,76,0.2);
+      pointer-events: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark-2);
+      border-top: 1px solid rgba(201,168,76,0.12);
+      padding: 2rem 0;
+    }
+    footer p {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--gold); text-decoration: none; transition: opacity 0.2s; }
+    footer a:hover { opacity: 0.7; }
+
+    @media (max-width: 768px) {
+      .brand-grid { grid-template-columns: 1fr; }
+      .carousel-item img { height: 60vh; }
+      .carousel-caption { left: 5%; right: 5%; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-dark navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Icars</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contact</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Email</a></li>
+              <li><a class="dropdown-item" href="#">Phone</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Support</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link active" href="#">Ask</a></li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CAROUSEL -->
+  <div id="carouselExampleCaptions" class="carousel slide carousel-fade">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&h=500&w=1170&auto=format&fit=crop" class="d-block w-100" alt="Porsche 911">
+        <div class="carousel-caption d-none d-md-block">
+          <span class="section-label">01 — Porsche</span>
+          <h5>Porsche 911</h5>
+          <p>Timeless design meets unmatched performance. A true icon that blends luxury with raw speed. Built for those who crave precision and prestige.</p>
+          <button class="btn btn-secondary">Get more</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1574910946927-8d5a44391ed9?q=80&h=500&w=1170&auto=format&fit=crop" class="d-block w-100" alt="Toyota Supra MK5">
+        <div class="carousel-caption d-none d-md-block">
+          <span class="section-label">02 — Toyota</span>
+          <h5>Toyota Supra MK5</h5>
+          <p>Aggressive styling with turbocharged power. Engineered for thrill and everyday excitement. A modern legend reborn for speed lovers.</p>
+          <button class="btn btn-secondary">Get more</button>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?q=80&h=500&w=1170&auto=format&fit=crop" class="d-block w-100" alt="Nissan Skyline R35">
+        <div class="carousel-caption d-none d-md-block">
+          <span class="section-label">03 — Nissan</span>
+          <h5>Nissan Skyline R35</h5>
+          <p>Godzilla unleashed with extreme performance. Precision handling and brutal acceleration combined. A supercar that dominates both road and track.</p>
+          <button class="btn btn-secondary">Get more</button>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- BRAND CARDS -->
+  <section class="marketing">
+    <div class="container mb-5 text-center">
+      <span class="section-label" style="justify-content:center;display:block;">Our Collection</span>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;letter-spacing:0.1em;">Iconic Marques</h2>
+    </div>
+    <div class="container">
+      <div class="brand-grid">
+
+        <div class="brand-card">
+          <div class="brand-img-wrap">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.Z-S5-RVSkY4bebOwkYGdyQHaHa?pid=ImgDet&w=182&h=182&c=7&dpr=1.5&o=7&rm=3" alt="Porsche">
+          </div>
+          <h2>Porsche</h2>
+          <p>Porsche creates high performance luxury sports cars with iconic design, precision engineering, speed, innovation, prestige.</p>
+          <a class="btn btn-secondary" href="#">View details »</a>
+        </div>
+
+        <div class="brand-card">
+          <div class="brand-img-wrap">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.sJEnykt0BC2Dvxdc3Xia3QHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Toyota">
+          </div>
+          <h2>Toyota</h2>
+          <p>Toyota builds reliable efficient vehicles offering durability, innovation, affordability, comfort, safety, and global trust worldwide.</p>
+          <a class="btn btn-secondary" href="#">View details »</a>
+        </div>
+
+        <div class="brand-card">
+          <div class="brand-img-wrap">
+            <img src="https://th.bing.com/th/id/OIP.WUIe0yItTU5IMIWsh6VhPgHaHa?w=208&h=208&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="Nissan">
+          </div>
+          <h2>Nissan</h2>
+          <p>Nissan designs modern performance cars combining advanced technology, speed, comfort, reliability and innovation globally.</p>
+          <a class="btn btn-secondary" href="#">View details »</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURETTES -->
+  <div class="container-fluid px-0">
+
+    <hr class="featurette-divider">
+    <section class="featurette-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-7">
+            <span class="section-label">Leadership</span>
+            <h2 class="featurette-heading">Porsche CEO<span class="text-body-secondary"> — Michael Leiters</span></h2>
+            <p class="lead">"Porsche is entering a "realignment phase" focused on becoming "leaner, faster, and even more desirable."</p>
+          </div>
+          <div class="col-md-5">
+            <div class="featurette-img-wrap">
+              <img src="https://th.bing.com/th/id/OIP.3yavxOBPcqcO7NPquOumxQHaE8?w=256&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="Michael Leiters">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="featurette-divider">
+    <section class="featurette-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-7 order-md-2">
+            <span class="section-label">Leadership</span>
+            <h2 class="featurette-heading">Toyota CEO<span class="text-body-secondary"> — Kenta Kon</span></h2>
+            <p class="lead">"We must adapt quickly to survive, as the auto industry is rapidly changing. The company will stay flexible with EVs, hybrids, and hydrogen while focusing on efficiency and long-term growth."</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <div class="featurette-img-wrap">
+              <img src="data:image/webp;base64,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" alt="Toyota CEO">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="featurette-divider">
+    <section class="featurette-section">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-7">
+            <span class="section-label">Leadership</span>
+            <h2 class="featurette-heading">Ivan Espinosa<span class="text-body-secondary"> — Nissan CEO</span></h2>
+            <p class="lead">"We must act with urgency to improve performance, become leaner, and strengthen profitability. By working together and adapting quickly, we will restore Nissan's competitiveness and build a sustainable future."</p>
+          </div>
+          <div class="col-md-5">
+            <div class="featurette-img-wrap">
+              <img src="data:image/webp;base64,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" alt="Ivan Espinosa">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr class="featurette-divider">
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="container py-4">
+    <p class="float-end"><a href="#">Back to top</a></p>
+    <p>© 2019–2026 Icars, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+</html>
