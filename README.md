@@ -23,5 +23,5 @@ A responsive premium automotive website built with Bootstrap 5.
 
 ## Author
 
-**Hasham Hameed**  
+  Hasham Hameed 
 GitHub: [@Hasham-Hameed](https://github.com/Hasham-Hameed)
